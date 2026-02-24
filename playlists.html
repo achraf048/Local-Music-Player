@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlists - Local Music Player</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="icon" href="images/music.png" type="image/x-icon">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <i class="fas fa-list-music"></i>
+                    <h1 class="main-title">Playlists</h1>
+                </div>
+                <div class="tagline">
+                    <p>Organize your favorite songs</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <!-- Search Bar -->
+                <div class="search-section">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" 
+                               class="search-input" 
+                               placeholder="Search playlists..."
+                               id="searchPlaylistInput">
+                        <button class="clear-search" id="clearPlaylistSearch" title="Clear search">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="createPlaylistBtn">
+                        <i class="fas fa-plus-circle"></i>
+                        Create Playlist
+                    </button>
+                    <button class="btn btn-secondary" onclick="window.location.href='index.html'">
+                        <i class="fas fa-music"></i>
+                        Music Library
+                    </button>
+                </div>
+            </div>
+
+            <!-- Playlists Table -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h2><i class="fas fa-list"></i> Your Playlists</h2>
+                </div>
+                
+                <table class="container">
+                    <thead>
+                        <tr>
+                            <th><h1>Play</h1></th>
+                            <th><h1>Name</h1></th>
+                            <th><h1>Songs</h1></th>
+                            <th><h1>Created</h1></th>
+                            <th><h1>Actions</h1></th>
+                        </tr>
+                    </thead>
+                    <tbody id="playlistsTableBody">
+                        <!-- Data will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Playlist Detail Section -->
+            <div id="playlistDetail" class="table-container" style="display: none; margin-top: 2rem;">
+                <div class="table-header">
+                    <h2><i class="fas fa-music"></i> <span id="playlistName">Playlist</span></h2>
+                    <button class="btn btn-secondary" onclick="playlistsManager.hidePlaylistDetail()">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+                
+                <table class="container">
+                    <thead>
+                        <tr>
+                            <th><h1>Play</h1></th>
+                            <th><h1>Title</h1></th>
+                            <th><h1>Artist</h1></th>
+                            <th><h1>Album</h1></th>
+                            <th><h1>Actions</h1></th>
+                        </tr>
+                    </thead>
+                    <tbody id="playlistSongsBody">
+                        <!-- Playlist songs will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-bottom">
+                    <p>© 2026 - Local Music Player</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Toast Message Container -->
+        <div id="toastContainer"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Database Modules -->
+    <script src="database/index.js"></script>
+    <script src="database/musicDB.js"></script>
+    <script src="database/playlistDB.js"></script>
+    <script src="database/playlistSongDB.js"></script>
+    <script src="database/SettingsDB.js"></script>
+    <script src="database/musicStatsDB.js"></script>
+    <script src="database/musicUtilityDB.js"></script>
+    <script src="database/musicExportDB.js"></script>
+
+    <!-- Modal modules -->
+    <script src="js/Modals/utils/modal-utils.js"></script>
+    <script src="js/Modals/base/modal-base.js"></script>
+    <script src="js/Modals/song/add-song-modal.js"></script>
+    <script src="js/Modals/song/edit-song-modal.js"></script>
+    <script src="js/Modals/song/delete-song-modal.js"></script>
+    <script src="js/Modals/playlist/create-playlist-modal.js"></script>
+    <script src="js/Modals/playlist/add-to-playlist-modal.js"></script>
+    <script src="js/Modals/index.js"></script>
+    <!-- Playlists modules -->
+    <script src="js/Playlists/utils/playlist-utils.js"></script>
+    <script src="js/Playlists/core/table-renderer.js"></script>
+    <script src="js/Playlists/core/search-manager.js"></script>
+    <script src="js/Playlists/detail/playlist-detail.js"></script>
+    <script src="js/Playlists/actions/playlist-crud.js"></script>
+    <script src="js/Playlists/actions/playlist-player.js"></script>
+    <script src="js/Playlists/index.js"></script>
+
+    <!-- Initialize everything -->
+    <script>
+    document.addEventListener('DOMContentLoaded', async function() {
+        try {
+            // Wait for database to be ready
+            if (!window.database || !window.database.db) {
+                console.log('🔄 Initializing database...');
+                await database.initDB();
+            }
+            
+            console.log('✅ Database ready!');
+            
+            // Initialize managers
+            if (window.modalHandler) {
+                modalHandler.initAllModals();
+            }
+            
+            if (window.playlistsManager) {
+                playlistsManager.init();
+            }
+            
+        } catch (error) {
+            console.error('❌ Failed to initialize:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Initialization Error',
+                text: 'Failed to load playlists. Please refresh the page.',
+                confirmButtonText: 'OK'
+            });
+        }
+    });
+    </script>
+</body>
+</html>

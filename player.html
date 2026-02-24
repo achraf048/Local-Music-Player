@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Now Playing - Local Music Player</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/player.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/lyrics.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="icon" href="images/music.png" type="image/x-icon">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <i class="fas fa-headphones"></i>
+                    <h1 class="main-title">Now Playing</h1>
+                </div>
+                <div class="tagline">
+                    <p id="currentSongInfo">No song playing</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Player Content -->
+        <main class="main-content">
+
+            <div class="player-container">
+                <div class="album-art-container">
+                    <img id="albumArt" src="img/default-album.jpg" alt="Album Art" class="album-art">
+                    <div class="song-details">
+                        <h2 id="songTitle">Select a song to play</h2>
+                        <h3 id="songArtist">Artist Name</h3>
+                        <p id="songAlbum">Album Name • <span id="songYear">Year</span></p>
+                    </div>
+                </div>
+
+                <div class="player-controls">
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar">
+                            <div class="progress" id="progress"></div>
+                        </div>
+                        <div class="time-display">
+                            <span id="currentTime">0:00</span>
+                            <span id="totalTime">0:00</span>
+                        </div>
+                    </div>
+
+                    <div class="control-buttons">
+                        <button class="control-btn" id="shuffleBtn" title="Shuffle">
+                            <i class="fas fa-random"></i>
+                        </button>
+                        <button class="control-btn" id="prevBtn" title="Previous">
+                            <i class="fas fa-step-backward"></i>
+                        </button>
+                        <button class="control-btn large" id="playBtn" title="Play/Pause">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button class="control-btn" id="nextBtn" title="Next">
+                            <i class="fas fa-step-forward"></i>
+                        </button>
+                        <button class="control-btn" id="repeatBtn" title="Repeat">
+                            <i class="fas fa-redo"></i>
+                        </button>
+                    </div>
+
+                    <div class="volume-control">
+                        <i class="fas fa-volume-up" id="volumeIcon"></i>
+                        <input type="range" id="volumeSlider" min="0" max="100" value="70" title="Volume">
+                    </div>
+                </div>
+
+                <div class="player-actions">
+                    <button class="btn btn-secondary" id="libraryBtn">
+                        <i class="fas fa-music"></i> Music Library
+                    </button>
+                    <button class="btn btn-secondary" id="playlistsBtn">
+                        <i class="fas fa-list"></i> Playlists
+                    </button>
+                </div>
+
+               <div class="lyrics-container">
+                    <div class="lyrics-header">
+                        <div class="lyrics-title">
+                            <i class="fas fa-align-left"></i>
+                            <h3>Lyrics</h3>
+                        </div>
+                        <button id="expandLyricsBtn" class="btn-expand" title="View fullscreen lyrics (Ctrl+L)">
+                            <i class="fas fa-expand-alt"></i>
+                            <span>Full Lyrics</span>
+                            <span class="shortcut-hint">Ctrl+L</span>
+                        </button>
+                    </div>
+                    <div class="lyrics-content" id="lyrics">
+                        No lyrics available. Select a song to see lyrics.
+                    </div>
+                </div>
+            </div>
+
+                           <!-- Lyrics Modal -->
+                <div id="lyricsModal" class="lyrics-modal">
+                    <div class="lyrics-modal-content">
+                        <div class="lyrics-modal-header">
+                            <h2>
+                                <span id="modalSongTitle">No song playing</span>
+                                <span id="modalSongArtist"></span>
+                            </h2>
+                            <button id="closeLyricsModal" class="btn-close-modal">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="lyrics-modal-body" id="modalLyricsContainer">
+                            <div class="no-lyrics">🎵 Loading lyrics...</div>
+                        </div>
+                    </div>
+                </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-bottom">
+                    <p>© 2026 - Local Music Player</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <audio id="audioPlayer" src=""></audio>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Database Modules -->
+    <script src="database/index.js"></script>
+    <script src="database/MusicDB.js"></script>
+    <script src="database/PlaylistDB.js"></script>
+    <script src="database/PlaylistSongDB.js"></script>
+    <script src="database/SettingsDB.js"></script>
+    <script src="database/MusicStatsDB.js"></script>
+    <script src="database/MusicUtilityDB.js"></script>
+    <script src="database/MusicExportDB.js"></script>
+    <!-- LRC JS -->
+    <script src="js/LRC/utils/lrc-utils.js"></script>
+    <script src="js/LRC/core/loader.js"></script>
+    <script src="js/LRC/core/parser.js"></script>
+    <script src="js/LRC/render/renderer.js"></script>
+    <script src="js/LRC/render/highlighter.js"></script>
+    <script src="js/LRC/sync/time-sync.js"></script>
+    <script src="js/LRC/index.js"></script>
+    <!-- Player JS -->
+    <script src="js/Player/utils/player-utils.js"></script>
+    <script src="js/Player/core/audio-manager.js"></script>
+    <script src="js/Player/core/playlists-manager.js"></script>
+    <script src="js/Player/UI/controls-manager.js"></script>
+    <script src="js/Player/UI/display-manager.js"></script>
+    <script src="js/Player/lyrics/lyrics-manager.js"></script>
+    <script src="js/Player/lyrics/modal-manager.js"></script>
+    <script src="js/Player/index.js"></script>
+</body>
+</html>

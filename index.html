@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Music Player</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="icon" href="images/music.png" type="image/x-icon">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Header Section -->
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <i class="fas fa-music"></i>
+                    <h1 class="main-title">Local Music Player</h1>
+                </div>
+                <div class="tagline">
+                    <p>Personal Music Library</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Music Stats -->
+            <div class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Songs</span>
+                        <span class="stat-value" id="totalSongs">0</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Now Playing</span>
+                        <span class="stat-value" id="nowPlaying">None</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Playlists</span>
+                        <span class="stat-value" id="totalPlaylists">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <!-- Search Bar -->
+                <div class="search-section">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" 
+                               class="search-input" 
+                               placeholder="Search songs, artists, or albums..."
+                               id="searchInput">
+                        <button class="clear-search" id="clearSearch" title="Clear search">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="addSongBtn">
+                        <i class="fas fa-plus-circle"></i>
+                        Add New Song
+                    </button>
+                    <button class="btn btn-secondary" onclick="window.location.href='playlists.html'">
+                        <i class="fas fa-list"></i>
+                        View Playlists
+                    </button>
+                </div>
+            </div>
+
+            <!-- Music Table -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h2><i class="fas fa-list"></i> Music Library</h2>
+                    <div class="action-buttons2">
+                        <button class="btn btn-secondary" id="exportBtn">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                        <button class="btn btn-secondary" id="importBtn">
+                            <i class="fas fa-upload"></i> Import
+                        </button>
+                        <button class="btn btn-secondary" onclick="tableManager.shuffleAll()">
+                            <i class="fas fa-random"></i> Shuffle All
+                        </button>
+                    </div>
+                </div>
+                
+                <table class="container">
+                    <thead>
+                        <tr>
+                            <th><h1>Play</h1></th>
+                            <th><h1>Title</h1></th>
+                            <th><h1>Artist</h1></th>
+                            <th><h1>Album</h1></th>
+                            <th><h1>Actions</h1></th>
+                        </tr>
+                    </thead>
+                    <tbody id="musicTableBody">
+                        <!-- Data will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-top">
+                    <div class="footer-info">
+                        <p><i class="fas fa-code"></i> Local Music Player</p>
+                        <p><i class="fas fa-database"></i> Your music, your control</p>
+                    </div>
+                    <div class="footer-signature">
+                        <i class="fas fa-heart"></i>
+                        <span>Music for everyone</span>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2024 - All rights reserved</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Toast Message Container -->
+        <div id="toastContainer"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Database Modules -->
+    <script src="database/index.js"></script>
+    <script src="database/MusicDB.js"></script>
+    <script src="database/PlaylistDB.js"></script>
+    <script src="database/PlaylistSongDB.js"></script>
+    <script src="database/SettingsDB.js"></script>
+    <script src="database/MusicStatsDB.js"></script>
+    <script src="database/MusicUtilityDB.js"></script>
+    <script src="database/MusicExportDB.js"></script>
+
+    <!-- Modal modules -->
+    <script src="js/Modals/utils/modal-utils.js"></script>
+    <script src="js/Modals/base/modal-base.js"></script>
+    <script src="js/Modals/song/add-song-modal.js"></script>
+    <script src="js/Modals/song/edit-song-modal.js"></script>
+    <script src="js/Modals/song/delete-song-modal.js"></script>
+    <script src="js/Modals/playlist/create-playlist-modal.js"></script>
+    <script src="js/Modals/playlist/add-to-playlist-modal.js"></script>
+    <script src="js/Modals/index.js"></script>
+    <!-- Library modules -->
+    <script src="js/Library/utils/library-utils.js"></script>
+    <script src="js/Library/core/table-renderer.js"></script>
+    <script src="js/Library/core/search-manager.js"></script>
+    <script src="js/Library/player/player-connector.js"></script>
+    <script src="js/Library/actions/song-actions.js"></script>
+    <script src="js/Library/actions/playlist-actions.js"></script>
+    <script src="js/Library/index.js"></script>
+    <!-- Export/Import modules -->
+    <script src="js/Export-Import/utils/export-utils.js"></script>
+    <script src="js/Export-Import/core/exporter.js"></script>
+    <script src="js/Export-Import/core/importer.js"></script>
+    <script src="js/Export-Import/UI/export-ui.js"></script>
+    <script src="js/Export-Import/UI/import-ui.js"></script>
+    <script src="js/Export-Import/index.js"></script>
+
+    <!-- Initialize everything -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📄 DOM fully loaded');
+            
+            // The database will dispatch 'databaseReady' when ready
+            // The library manager listens for this event
+        });
+    </script>
+</body>
+</html>
