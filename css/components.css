@@ -1,0 +1,442 @@
+/* Buttons */
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #1B5E20 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(77, 195, 250, 0.3);
+}
+
+.btn-secondary {
+    background: var(--bg-table-odd);
+    color: var(--text-primary);
+    border: 1px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-card);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.btn-small {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.85rem;
+}
+
+.action-buttons, .action-buttons2 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    justify-content: center;
+}
+
+.action-buttons2 {
+    flex-direction: row;
+}
+
+/* Action Buttons in Table */
+.action-cell {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.action-buttons-group {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: nowrap;
+    padding: 0 5px;
+}
+
+.action-btn {
+    padding: 0.5rem 0.8rem;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 80px;
+    justify-content: center;
+    white-space: nowrap;
+    color: white;
+}
+
+/* Playlist button - Blue */
+.playlist-btn {
+    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+}
+
+.playlist-btn:hover {
+    background: linear-gradient(135deg, #1976D2 0%, #0D47A1 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+}
+
+/* Edit button - Green */
+.edit-btn {
+    background: linear-gradient(135deg, var(--success-color) 0%, #2E7D32 100%);
+}
+
+.edit-btn:hover {
+    background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+/* Delete button - Red */
+.delete-btn {
+    background: linear-gradient(135deg, #F44336 0%, #D32F2F 100%);
+}
+
+.delete-btn:hover {
+    background: linear-gradient(135deg, #D32F2F 0%, #C62828 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(244, 67, 54, 0.3);
+}
+
+.btn-text {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Play button in table */
+.play-btn {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    margin: 0 auto;
+}
+
+.play-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(77, 195, 250, 0.4);
+}
+
+.play-btn i {
+    font-size: 1.2rem;
+}
+
+/* Search Section */
+.search-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm) 3rem;
+    font-size: 1rem;
+    background: var(--bg-dark);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    transition: all var(--transition-normal);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(77, 195, 250, 0.1);
+}
+
+.clear-search {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all var(--transition-normal);
+}
+
+.clear-search:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color);
+}
+
+.search-hint {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.search-hint i {
+    color: var(--primary-color);
+}
+
+/* Stats Cards */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.stat-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    border-left: 4px solid var(--primary-color);
+    transition: transform var(--transition-normal);
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Toast Notifications */
+#toastContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+}
+
+.toast {
+    background: var(--bg-card);
+    border-left: 4px solid var(--primary-color);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-sm);
+    animation: slideIn 0.3s ease;
+    box-shadow: var(--shadow-heavy);
+}
+
+.toast-info {
+    border-left-color: var(--primary-color);
+}
+
+.toast-warning {
+    border-left-color: var(--warning-color);
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--text-primary);
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all var(--transition-normal);
+}
+
+.toast-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color);
+}
+
+/* Responsive adjustments for action buttons */
+@media (max-width: 800px) {
+    .action-cell {
+        white-space: normal;
+        text-align: left;
+        padding-top: var(--spacing-md);
+        border-top: 2px solid var(--border-color);
+    }
+    
+    .action-buttons-group {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+    }
+    
+    .action-btn {
+        min-width: 100px;
+        padding: 0.6rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .action-btn {
+        padding: 0.5rem 0.8rem;
+        min-width: 80px;
+        font-size: 0.75rem;
+    }
+    
+    .btn-text {
+        font-size: 0.75rem;
+    }
+    
+    .action-buttons-group {
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .btn-text {
+        display: none;
+    }
+    
+    .action-btn {
+        min-width: 40px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        justify-content: center;
+        padding: 0;
+    }
+    
+    .action-btn i {
+        margin: 0;
+        font-size: 1rem;
+    }
+}
+
+.view-playlist-btn {
+    background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%);
+    color: white;
+}
+
+.view-playlist-btn:hover {
+    background: linear-gradient(135deg, #0097A7 0%, #00838F 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 188, 212, 0.3);
+}
+
+/* Export playlist button - Purple */
+.export-playlist-btn {
+    background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+    color: white;
+}
+
+.export-playlist-btn:hover {
+    background: linear-gradient(135deg, #7B1FA2 0%, #6A1B9A 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(156, 39, 176, 0.3);
+}
+
+/* Delete playlist button - Red (already exists, but ensure it works) */
+.delete-playlist-btn {
+    background: linear-gradient(135deg, #F44336 0%, #D32F2F 100%);
+    color: white;
+}
+
+.delete-playlist-btn:hover {
+    background: linear-gradient(135deg, #D32F2F 0%, #C62828 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(244, 67, 54, 0.3);
+}
+
+/* Ensure all action buttons have consistent styling */
+.view-playlist-btn,
+.export-playlist-btn,
+.delete-playlist-btn {
+    padding: 0.5rem 0.8rem;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 80px;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+/* Make sure they work in the action-buttons-group */
+.action-buttons-group .view-playlist-btn,
+.action-buttons-group .export-playlist-btn,
+.action-buttons-group .delete-playlist-btn {
+    margin: 0;
+}
+
+.remove-from-playlist-btn {
+    background: linear-gradient(135deg, #F44336 0%, #D32F2F 100%);
+}

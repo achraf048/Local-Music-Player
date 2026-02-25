@@ -1,0 +1,131 @@
+/* table.css - Updated for music player */
+.container {
+    text-align: left;
+    overflow: hidden;
+    width: 100%;
+    margin: 0;
+    display: table;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+/* Table Headers */
+.container th {
+    background-color: var(--bg-dark);
+    padding: 1.2rem;
+    font-weight: 600;
+    font-size: 1em;
+    color: var(--primary-color);
+    text-align: left;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.container th h1 {
+    font-weight: 600;
+    font-size: 1em;
+    text-align: left;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+/* Table Cells */
+.container td {
+    font-weight: normal;
+    font-size: 1em;
+    color: var(--text-primary);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    vertical-align: middle;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Play Button Column */
+.container td:first-child { 
+    width: 8%;
+    min-width: 60px;
+    text-align: center;
+}
+
+/* Title Column */
+.container td:nth-child(2) {
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 1.1em;
+    width: 32%;
+    min-width: 200px;
+}
+
+/* Artist Column */
+.container td:nth-child(3) {
+    color: var(--text-primary);
+    font-style: italic;
+    font-weight: 400;
+    width: 25%;
+    min-width: 150px;
+}
+
+/* Album Column */
+.container td:nth-child(4) {
+    color: var(--text-secondary);
+    width: 25%;
+    min-width: 150px;
+}
+
+/* Actions Column */
+.container td:nth-child(5) {
+    width: 50%;
+    min-width: 200px;
+    text-align: center;
+    padding: 1rem 0.5rem;
+}
+
+/* Play Button Styles */
+.play-btn {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    margin: 0 auto;
+}
+
+.play-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(77, 195, 250, 0.4);
+}
+
+.play-btn i {
+    font-size: 1.2rem;
+}
+
+/* Row Backgrounds */
+.container tr:nth-child(odd) {
+    background-color: var(--bg-table-odd);
+}
+
+.container tr:nth-child(even) {
+    background-color: var(--bg-table-even);
+}
+
+/* Cell Hover Effect */
+.container tr:hover td {
+    background-color: rgba(77, 195, 250, 0.05);
+    transition: background-color var(--transition-fast);
+}
+
+/* Header Column Widths */
+.container th:nth-child(1) { width: 8%; min-width: 60px; text-align: center; }
+.container th:nth-child(2) { width: 32%; min-width: 200px; }
+.container th:nth-child(3) { width: 25%; min-width: 150px; }
+.container th:nth-child(4) { width: 25%; min-width: 150px; }
+.container th:nth-child(5) { width: 25%; min-width: 200px; text-align: center; }

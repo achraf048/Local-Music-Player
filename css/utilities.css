@@ -1,0 +1,49 @@
+/* Animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(77, 195, 250, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(77, 195, 250, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(77, 195, 250, 0);
+    }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Input Focus Animation */
+.swal-input:focus, .swal-textarea:focus {
+    animation: pulse 1.5s infinite;
+}
+
+/* Footer Background Pattern */
+.main-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(77, 195, 250, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(251, 102, 122, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}

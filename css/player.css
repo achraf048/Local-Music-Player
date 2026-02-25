@@ -1,0 +1,229 @@
+/* Player Specific Styles */
+.player-container {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    border: 1px solid var(--border-color);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.album-art-container {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.album-art {
+    width: 200px;
+    height: 200px;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    box-shadow: var(--shadow-heavy);
+    border: 3px solid var(--primary-color);
+}
+
+.song-details {
+    flex: 1;
+}
+
+.song-details h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xs);
+    font-weight: 400;
+}
+
+.song-details h3 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+    font-weight: 300;
+}
+
+.song-details p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Player Controls */
+.player-controls {
+    margin-bottom: var(--spacing-xl);
+}
+
+.progress-container {
+    margin-bottom: var(--spacing-lg);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--bg-dark);
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: var(--spacing-xs);
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.1s;
+}
+
+.time-display {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+.control-btn {
+    background: var(--bg-dark);
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    border-radius: 50%;
+    transition: all var(--transition-normal);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-btn:hover {
+    background: rgba(77, 195, 250, 0.1);
+    transform: scale(1.1);
+}
+
+.control-btn.large {
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+}
+
+.volume-control i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.volume-control input[type="range"] {
+    width: 150px;
+    cursor: pointer;
+    background: var(--bg-dark);
+    border-radius: 3px;
+    height: 6px;
+}
+
+.player-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Lyrics Container */
+.lyrics-container {
+    background: var(--bg-dark);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color);
+}
+
+.lyrics-container h3 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.lyrics-content {
+    max-height: 300px;
+    overflow-y: auto;
+    color: var(--text-primary);
+    line-height: 1.6;
+    white-space: pre-line;
+    padding: var(--spacing-sm);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-sm);
+}
+
+.lyrics-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.lyrics-content::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Active states */
+#shuffleBtn.active,
+#repeatBtn.active {
+    color: var(--primary-color);
+    background: rgba(77, 195, 250, 0.2);
+}
+
+@media (max-width: 768px) {
+    .player-container {
+        padding: var(--spacing-md);
+    }
+    
+    .album-art-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .album-art {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .song-details h2 {
+        font-size: 1.5rem;
+    }
+    
+    .song-details h3 {
+        font-size: 1.2rem;
+    }
+    
+    .control-buttons {
+        gap: var(--spacing-md);
+    }
+    
+    .control-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .control-btn.large {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+}
