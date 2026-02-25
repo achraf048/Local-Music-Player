@@ -16,7 +16,16 @@ class DisplayManager {
         this.songTitle.textContent = song.title;
         this.songArtist.textContent = song.artist;
         this.songAlbum.textContent = `${song.album} • ${song.year}`;
-        this.albumArt.src = song.image || "images/default-album.jpg";
+        
+        // Set up error handler before setting src
+        this.albumArt.onerror = () => {
+            console.log("Cover image was not found, using default album image!");
+            this.albumArt.src = "images/default-album.jpg";
+            this.albumArt.onerror = null; // Prevent infinite loop if default is also missing
+        };
+        
+        // Try to load the requested image
+        this.albumArt.src = song.image;
         this.albumArt.alt = `${song.title} - ${song.artist}`;
         
         if (this.currentSongInfo) {
