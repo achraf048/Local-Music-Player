@@ -124,8 +124,10 @@ window.database = database;
 window.Database = Database;
 
 // Initialize database automatically when loaded
-database.initDB().then(() => {
-    // Success - no console.log
-}).catch(error => {
-    console.error('❌ Failed to initialize database:', error);
+document.addEventListener('DOMContentLoaded', () => {
+    database.initDB().then(() => {
+        // Success
+    }).catch(error => {
+        console.error('❌ Failed to initialize database:', error);
+    });
 });
